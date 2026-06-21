@@ -4121,15 +4121,15 @@ function Fatality:CreateConfigWindow(Root: ScreenGui , Fatal , Button: ImageButt
 		end,
 
 		Init = function(Name: string,Folder: string)
-			if not isfolder(Folder or "Fatality") then
-				makefolder(Folder or "Fatality");	
+			if not isfolder(Folder or "Shitaro") then
+				makefolder(Folder or "Shitaro");	
 			end;
 
-			if not isfolder((Folder or "Fatality").."/Config") then
-				makefolder((Folder or "Fatality").."/Config");	
+			if not isfolder((Folder or "Shitaro").."/Config") then
+				makefolder((Folder or "Shitaro").."/Config");	
 			end;
 
-			local cfgPath = (Folder or "Fatality").."/Config/"..tostring(Name);
+			local cfgPath = (Folder or "Shitaro").."/Config/"..tostring(Name);
 
 			if not isfolder(cfgPath) then
 				makefolder(cfgPath)
