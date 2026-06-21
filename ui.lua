@@ -6318,6 +6318,414 @@ function Fatality.new(Window: Window)
 		end)
 	end;
 
+	do
+		local ConfigFrame = Instance.new("Frame")
+		local UIStroke = Instance.new("UIStroke")
+		local UICorner = Instance.new("UICorner")
+		local DropShadow = Instance.new("ImageLabel")
+		local CreateBox = Instance.new("Frame")
+		local UICorner_2 = Instance.new("UICorner")
+		local UIStroke_2 = Instance.new("UIStroke")
+		local TextBox = Instance.new("TextBox")
+		local CreateButton = Instance.new("ImageButton")
+		local ScrollingFrame = Instance.new("ScrollingFrame")
+		local UIListLayout = Instance.new("UIListLayout")
+		local configScale = UDim2.new(0, 350, 0, 400)
+		
+		Fatality:AddDragBlacklist(ConfigFrame)
+		
+		local ConfigToggle = function(value)
+			if value then
+				Fatality:CreateAnimation(ConfigFrame,0.35,{
+					Position = UDim2.new(0.5,0,0.5,0)
+				})
+				Fatality:CreateAnimation(DropShadow,0.35,{
+					ImageTransparency = 0.5
+				})
+			else
+				Fatality:CreateAnimation(ConfigFrame,0.35,{
+					Position = UDim2.new(4,0,4,0)
+				})
+				Fatality:CreateAnimation(DropShadow,0.35,{
+					ImageTransparency = 1
+				})
+			end
+		end
+		
+		ConfigFrame.Name = Fatality:RandomString()
+		ConfigFrame.Parent = Fatalitywin
+		ConfigFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+		ConfigFrame.BackgroundColor3 = Fatality.Colors.Section
+		ConfigFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		ConfigFrame.BorderSizePixel = 0
+		ConfigFrame.Position = UDim2.new(4,0,4,0)
+		ConfigFrame.Size = configScale
+		ConfigFrame.ZIndex = 100
+		ConfigFrame.ClipsDescendants = true
+		
+		Fatality:RegisterColorElement("Section", ConfigFrame)
+		
+		UIStroke.Color = Fatality.Colors.Border
+		UIStroke.Parent = ConfigFrame
+		
+		Fatality:RegisterColorElement("Border", UIStroke, "Color")
+		
+		UICorner.CornerRadius = UDim.new(0, 3)
+		UICorner.Parent = ConfigFrame
+		
+		DropShadow.Name = Fatality:RandomString()
+		DropShadow.Parent = ConfigFrame
+		DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+		DropShadow.BackgroundTransparency = 1.000
+		DropShadow.BorderSizePixel = 0
+		DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+		DropShadow.Rotation = 0.010
+		DropShadow.Size = UDim2.new(1, 47, 1, 47)
+		DropShadow.ZIndex = 99
+		DropShadow.Image = "rbxassetid://6014261993"
+		DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+		DropShadow.ImageTransparency = 1
+		DropShadow.ScaleType = Enum.ScaleType.Slice
+		DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+		
+		CreateBox.Name = Fatality:RandomString()
+		CreateBox.Parent = ConfigFrame
+		CreateBox.AnchorPoint = Vector2.new(0.5, 0)
+		CreateBox.BackgroundColor3 = Fatality.Colors.Black
+		CreateBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		CreateBox.BorderSizePixel = 0
+		CreateBox.Position = UDim2.new(0.5, 0, 0, 9)
+		CreateBox.Size = UDim2.new(1, -60, 0, 30)
+		CreateBox.ZIndex = 101
+		
+		Fatality:RegisterColorElement("Black", CreateBox)
+		
+		UICorner_2.CornerRadius = UDim.new(0, 3)
+		UICorner_2.Parent = CreateBox
+		
+		UIStroke_2.Transparency = 0.650
+		UIStroke_2.Color = Fatality.Colors.Border
+		UIStroke_2.Parent = CreateBox
+		
+		Fatality:RegisterColorElement("Border", UIStroke_2, "Color")
+		
+		TextBox.Parent = CreateBox
+		TextBox.AnchorPoint = Vector2.new(0, 0.5)
+		TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		TextBox.BackgroundTransparency = 1.000
+		TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		TextBox.BorderSizePixel = 0
+		TextBox.Position = UDim2.new(0, 10, 0.5, 0)
+		TextBox.Size = UDim2.new(1, -20, 1, -5)
+		TextBox.ZIndex = 102
+		TextBox.ClearTextOnFocus = false
+		TextBox.FontFace = Fatality.FontSemiBold
+		TextBox.PlaceholderText = "Config name"
+		TextBox.Text = ""
+		TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextBox.TextSize = 13.000
+		TextBox.TextXAlignment = Enum.TextXAlignment.Left
+		
+		CreateButton.Name = Fatality:RandomString()
+		CreateButton.Parent = ConfigFrame
+		CreateButton.AnchorPoint = Vector2.new(1, 0)
+		CreateButton.BackgroundColor3 = Fatality.Colors.Main
+		CreateButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		CreateButton.BorderSizePixel = 0
+		CreateButton.Position = UDim2.new(1, -9, 0, 9)
+		CreateButton.Size = UDim2.new(0, 42, 0, 30)
+		CreateButton.ZIndex = 101
+		CreateButton.Image = "rbxassetid://10709819059"
+		CreateButton.ImageColor3 = Color3.fromRGB(255, 255, 255)
+		
+		Fatality:RegisterColorElement("Main", CreateButton)
+		
+		local UICorner_3 = Instance.new("UICorner")
+		UICorner_3.CornerRadius = UDim.new(0, 3)
+		UICorner_3.Parent = CreateButton
+		
+		Fatality:CreateHover(CreateButton,function(bool)
+			if bool then
+				Fatality:CreateAnimation(CreateButton,0.3,{
+					BackgroundTransparency = 0.2
+				})
+			else
+				Fatality:CreateAnimation(CreateButton,0.3,{
+					BackgroundTransparency = 0
+				})
+			end
+		end)
+		
+		ScrollingFrame.Parent = ConfigFrame
+		ScrollingFrame.Active = true
+		ScrollingFrame.AnchorPoint = Vector2.new(0.5, 0)
+		ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ScrollingFrame.BackgroundTransparency = 1.000
+		ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		ScrollingFrame.BorderSizePixel = 0
+		ScrollingFrame.Position = UDim2.new(0.5, 0, 0, 48)
+		ScrollingFrame.Size = UDim2.new(1, -15, 1, -56)
+		ScrollingFrame.ZIndex = 102
+		ScrollingFrame.ScrollBarThickness = 2
+		ScrollingFrame.ScrollBarImageColor3 = Fatality.Colors.Main
+		
+		UIListLayout.Parent = ScrollingFrame
+		UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		UIListLayout.Padding = UDim.new(0, 5)
+		
+		UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
+			ScrollingFrame.CanvasSize = UDim2.fromOffset(0,UIListLayout.AbsoluteContentSize.Y + 5)
+		end)
+		
+		local function createConfigCard(configName)
+			local Card = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local UIStroke = Instance.new("UIStroke")
+			local ConfigLabel = Instance.new("TextLabel")
+			local SaveBtn = Instance.new("ImageButton")
+			local LoadBtn = Instance.new("ImageButton")
+			
+			Card.Name = Fatality:RandomString()
+			Card.Parent = ScrollingFrame
+			Card.BackgroundColor3 = Fatality.Colors.Element
+			Card.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			Card.BorderSizePixel = 0
+			Card.Size = UDim2.new(1, -5, 0, 35)
+			Card.ZIndex = 103
+			
+			Fatality:RegisterColorElement("Element", Card)
+			
+			UICorner.CornerRadius = UDim.new(0, 3)
+			UICorner.Parent = Card
+			
+			UIStroke.Color = Fatality.Colors.Border
+			UIStroke.Transparency = 0.7
+			UIStroke.Parent = Card
+			
+			Fatality:RegisterColorElement("Border", UIStroke, "Color")
+			
+			ConfigLabel.Name = Fatality:RandomString()
+			ConfigLabel.Parent = Card
+			ConfigLabel.AnchorPoint = Vector2.new(0, 0.5)
+			ConfigLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ConfigLabel.BackgroundTransparency = 1.000
+			ConfigLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ConfigLabel.BorderSizePixel = 0
+			ConfigLabel.Position = UDim2.new(0, 10, 0.5, 0)
+			ConfigLabel.Size = UDim2.new(1, -70, 1, 0)
+			ConfigLabel.ZIndex = 104
+			ConfigLabel.FontFace = Fatality.FontSemiBold
+			ConfigLabel.Text = configName
+			ConfigLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+			ConfigLabel.TextSize = 13.000
+			ConfigLabel.TextTransparency = 0.2
+			ConfigLabel.TextXAlignment = Enum.TextXAlignment.Left
+			ConfigLabel.TextTruncate = Enum.TextTruncate.AtEnd
+			
+			SaveBtn.Name = Fatality:RandomString()
+			SaveBtn.Parent = Card
+			SaveBtn.AnchorPoint = Vector2.new(1, 0.5)
+			SaveBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			SaveBtn.BackgroundTransparency = 1.000
+			SaveBtn.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			SaveBtn.BorderSizePixel = 0
+			SaveBtn.Position = UDim2.new(1, -35, 0.5, 0)
+			SaveBtn.Size = UDim2.new(0, 20, 0, 20)
+			SaveBtn.ZIndex = 104
+			SaveBtn.Image = "rbxassetid://122894934359450"
+			SaveBtn.ImageColor3 = Color3.fromRGB(255, 255, 255)
+			SaveBtn.ImageTransparency = 0.5
+			
+			LoadBtn.Name = Fatality:RandomString()
+			LoadBtn.Parent = Card
+			LoadBtn.AnchorPoint = Vector2.new(1, 0.5)
+			LoadBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			LoadBtn.BackgroundTransparency = 1.000
+			LoadBtn.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			LoadBtn.BorderSizePixel = 0
+			LoadBtn.Position = UDim2.new(1, -8, 0.5, 0)
+			LoadBtn.Size = UDim2.new(0, 20, 0, 20)
+			LoadBtn.ZIndex = 104
+			LoadBtn.Image = "rbxassetid://132295854994374"
+			LoadBtn.ImageColor3 = Color3.fromRGB(255, 255, 255)
+			LoadBtn.ImageTransparency = 0.5
+			
+			Fatality:CreateHover(SaveBtn,function(bool)
+				if bool then
+					Fatality:CreateAnimation(SaveBtn,0.25,{
+						ImageTransparency = 0.1
+					})
+				else
+					Fatality:CreateAnimation(SaveBtn,0.25,{
+						ImageTransparency = 0.5
+					})
+				end
+			end)
+			
+			Fatality:CreateHover(LoadBtn,function(bool)
+				if bool then
+					Fatality:CreateAnimation(LoadBtn,0.25,{
+						ImageTransparency = 0.1
+					})
+				else
+					Fatality:CreateAnimation(LoadBtn,0.25,{
+						ImageTransparency = 0.5
+					})
+				end
+			end)
+			
+			Fatality:CreateHover(Card,function(bool)
+				if bool then
+					Fatality:CreateAnimation(Card,0.25,{
+						BackgroundTransparency = 0
+					})
+					Fatality:CreateAnimation(UIStroke,0.25,{
+						Transparency = 0.5
+					})
+				else
+					Fatality:CreateAnimation(Card,0.25,{
+						BackgroundTransparency = 0
+					})
+					Fatality:CreateAnimation(UIStroke,0.25,{
+						Transparency = 0.7
+					})
+				end
+			end)
+			
+			SaveBtn.MouseButton1Click:Connect(function()
+				Fatality:PlayClickSound()
+				
+				local flags = Fatal:GetFlagConfig()
+				flags.Info = {
+					Name = Window.Name,
+					Folder = "Shitaro",
+					ConfigName = configName
+				}
+				
+				local json = game:GetService('HttpService'):JSONEncode(flags)
+				local path = "Shitaro/Config/"..Window.Name.."/"..configName..".json"
+				
+				writefile(path, json)
+				
+				Fatal.Notifier:Notify({
+					Title = "Config",
+					Content = "Saved '"..configName.."'",
+					Icon = "check",
+					Duration = 3
+				})
+			end)
+			
+			LoadBtn.MouseButton1Click:Connect(function()
+				Fatality:PlayClickSound()
+				
+				local path = "Shitaro/Config/"..Window.Name.."/"..configName..".json"
+				
+				if isfile(path) then
+					local json = readfile(path)
+					local config = game:GetService('HttpService'):JSONDecode(json)
+					
+					Fatal:LoadConfig(config)
+					
+					Fatal.Notifier:Notify({
+						Title = "Config",
+						Content = "Loaded '"..configName.."'",
+						Icon = "check",
+						Duration = 3
+					})
+				end
+			end)
+			
+			return Card
+		end
+		
+		local function refreshConfigs()
+			for _, child in pairs(ScrollingFrame:GetChildren()) do
+				if child:IsA('Frame') then
+					child:Destroy()
+				end
+			end
+			
+			local configPath = "Shitaro/Config/"..Window.Name
+			
+			if isfolder(configPath) then
+				for _, file in pairs(listfiles(configPath)) do
+					local fileName = file:match("([^/\\]+)%.json$")
+					if fileName then
+						createConfigCard(fileName)
+					end
+				end
+			end
+		end
+		
+		CreateButton.MouseButton1Click:Connect(function()
+			Fatality:PlayClickSound()
+			
+			local configName = TextBox.Text
+			
+			if configName == "" or not configName:byte() then
+				Fatal.Notifier:Notify({
+					Title = "Config",
+					Content = "Enter config name",
+					Icon = "alert-circle",
+					Duration = 3
+				})
+				return
+			end
+			
+			local flags = Fatal:GetFlagConfig()
+			flags.Info = {
+				Name = Window.Name,
+				Folder = "Shitaro",
+				ConfigName = configName
+			}
+			
+			local json = game:GetService('HttpService'):JSONEncode(flags)
+			local path = "Shitaro/Config/"..Window.Name.."/"..configName..".json"
+			
+			if not isfolder("Shitaro") then
+				makefolder("Shitaro")
+			end
+			
+			if not isfolder("Shitaro/Config") then
+				makefolder("Shitaro/Config")
+			end
+			
+			if not isfolder("Shitaro/Config/"..Window.Name) then
+				makefolder("Shitaro/Config/"..Window.Name)
+			end
+			
+			writefile(path, json)
+			
+			TextBox.Text = ""
+			
+			refreshConfigs()
+			
+			Fatal.Notifier:Notify({
+				Title = "Config",
+				Content = "Created '"..configName.."'",
+				Icon = "check",
+				Duration = 3
+			})
+		end)
+		
+		SaveButton.MouseButton1Click:Connect(function()
+			Fatality:PlayClickSound()
+			ConfigToggle(true)
+			refreshConfigs()
+		end)
+		
+		UserInputService.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				if not Fatality:IsMouseOverFrame(ConfigFrame) then
+					ConfigToggle(false)
+				end
+			end
+		end)
+		
+		ConfigToggle(false)
+	end
+
 	function Fatal:GetButton()
 		local backpack = Instance.new("ImageButton")
 		local UICorner = Instance.new("UICorner")
