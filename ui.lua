@@ -1199,6 +1199,10 @@ function Fatality:CreateHover(Element : Frame,Callback : (boolean) -> any)
 end;
 
 function Fatality:PlayClickSound()
+	if not Fatality.ClickSoundId or Fatality.ClickSoundId == "" then
+		return
+	end
+	
 	local Sound = Fatality.__CLICK_SOUND;
 
 	if not Sound then
@@ -1207,6 +1211,8 @@ function Fatality:PlayClickSound()
 		Sound.Volume = 1;
 		Sound.Parent = SoundService;
 		Fatality.__CLICK_SOUND = Sound;
+	else
+		Sound.SoundId = Fatality.ClickSoundId;
 	end;
 
 	Sound.TimePosition = 0;
