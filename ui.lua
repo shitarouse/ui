@@ -6330,7 +6330,7 @@ function Fatality.new(Window: Window)
 		local CreateButton = Instance.new("ImageButton")
 		local ScrollingFrame = Instance.new("ScrollingFrame")
 		local UIListLayout = Instance.new("UIListLayout")
-		local configScale = UDim2.new(0, 350, 0, 400)
+		local configScale = UDim2.new(0, 295, 0, 295)
 		
 		Fatality:AddDragBlacklist(ConfigFrame)
 		
@@ -6395,7 +6395,7 @@ function Fatality.new(Window: Window)
 		CreateBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		CreateBox.BorderSizePixel = 0
 		CreateBox.Position = UDim2.new(0.5, 0, 0, 9)
-		CreateBox.Size = UDim2.new(1, -60, 0, 30)
+		CreateBox.Size = UDim2.new(1, -35, 0, 25)
 		CreateBox.ZIndex = 101
 		
 		Fatality:RegisterColorElement("Black", CreateBox)
@@ -6429,29 +6429,25 @@ function Fatality.new(Window: Window)
 		CreateButton.Name = Fatality:RandomString()
 		CreateButton.Parent = ConfigFrame
 		CreateButton.AnchorPoint = Vector2.new(1, 0)
-		CreateButton.BackgroundColor3 = Fatality.Colors.Main
+		CreateButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		CreateButton.BackgroundTransparency = 1.000
 		CreateButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		CreateButton.BorderSizePixel = 0
 		CreateButton.Position = UDim2.new(1, -9, 0, 9)
-		CreateButton.Size = UDim2.new(0, 42, 0, 30)
+		CreateButton.Size = UDim2.new(0, 25, 0, 25)
 		CreateButton.ZIndex = 101
-		CreateButton.Image = "rbxassetid://10709819059"
+		CreateButton.Image = "rbxassetid://102441183584476"
 		CreateButton.ImageColor3 = Color3.fromRGB(255, 255, 255)
-		
-		Fatality:RegisterColorElement("Main", CreateButton)
-		
-		local UICorner_3 = Instance.new("UICorner")
-		UICorner_3.CornerRadius = UDim.new(0, 3)
-		UICorner_3.Parent = CreateButton
+		CreateButton.ImageTransparency = 0.5
 		
 		Fatality:CreateHover(CreateButton,function(bool)
 			if bool then
 				Fatality:CreateAnimation(CreateButton,0.3,{
-					BackgroundTransparency = 0.2
+					ImageTransparency = 0.2
 				})
 			else
 				Fatality:CreateAnimation(CreateButton,0.3,{
-					BackgroundTransparency = 0
+					ImageTransparency = 0.5
 				})
 			end
 		end)
@@ -6463,19 +6459,18 @@ function Fatality.new(Window: Window)
 		ScrollingFrame.BackgroundTransparency = 1.000
 		ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		ScrollingFrame.BorderSizePixel = 0
-		ScrollingFrame.Position = UDim2.new(0.5, 0, 0, 48)
-		ScrollingFrame.Size = UDim2.new(1, -15, 1, -56)
+		ScrollingFrame.Position = UDim2.new(0.5, 0, 0, 40)
+		ScrollingFrame.Size = UDim2.new(1, -15, 1, -45)
 		ScrollingFrame.ZIndex = 102
-		ScrollingFrame.ScrollBarThickness = 2
-		ScrollingFrame.ScrollBarImageColor3 = Fatality.Colors.Main
+		ScrollingFrame.ScrollBarThickness = 0
 		
 		UIListLayout.Parent = ScrollingFrame
 		UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout.Padding = UDim.new(0, 5)
+		UIListLayout.Padding = UDim.new(0, 4)
 		
 		UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
-			ScrollingFrame.CanvasSize = UDim2.fromOffset(0,UIListLayout.AbsoluteContentSize.Y + 5)
+			ScrollingFrame.CanvasSize = UDim2.fromOffset(0,UIListLayout.AbsoluteContentSize.Y)
 		end)
 		
 		local function createConfigCard(configName)
@@ -6491,10 +6486,10 @@ function Fatality.new(Window: Window)
 			Card.BackgroundColor3 = Fatality.Colors.Element
 			Card.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Card.BorderSizePixel = 0
-			Card.Size = UDim2.new(1, -5, 0, 35)
+			Card.Size = UDim2.new(1, 0, 0, 30)
 			Card.ZIndex = 103
 			
-			Fatality:RegisterColorElement("Element", Card)
+			Card.BackgroundTransparency = 1.000
 			
 			UICorner.CornerRadius = UDim.new(0, 3)
 			UICorner.Parent = Card
@@ -6518,8 +6513,8 @@ function Fatality.new(Window: Window)
 			ConfigLabel.FontFace = Fatality.FontSemiBold
 			ConfigLabel.Text = configName
 			ConfigLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-			ConfigLabel.TextSize = 13.000
-			ConfigLabel.TextTransparency = 0.2
+			ConfigLabel.TextSize = 12.000
+			ConfigLabel.TextTransparency = 0.200
 			ConfigLabel.TextXAlignment = Enum.TextXAlignment.Left
 			ConfigLabel.TextTruncate = Enum.TextTruncate.AtEnd
 			
@@ -6530,12 +6525,12 @@ function Fatality.new(Window: Window)
 			SaveBtn.BackgroundTransparency = 1.000
 			SaveBtn.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SaveBtn.BorderSizePixel = 0
-			SaveBtn.Position = UDim2.new(1, -35, 0.5, 0)
-			SaveBtn.Size = UDim2.new(0, 20, 0, 20)
+			SaveBtn.Position = UDim2.new(1, -30, 0.5, 0)
+			SaveBtn.Size = UDim2.new(0, 18, 0, 18)
 			SaveBtn.ZIndex = 104
 			SaveBtn.Image = "rbxassetid://122894934359450"
 			SaveBtn.ImageColor3 = Color3.fromRGB(255, 255, 255)
-			SaveBtn.ImageTransparency = 0.5
+			SaveBtn.ImageTransparency = 0.500
 			
 			LoadBtn.Name = Fatality:RandomString()
 			LoadBtn.Parent = Card
@@ -6544,12 +6539,12 @@ function Fatality.new(Window: Window)
 			LoadBtn.BackgroundTransparency = 1.000
 			LoadBtn.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			LoadBtn.BorderSizePixel = 0
-			LoadBtn.Position = UDim2.new(1, -8, 0.5, 0)
-			LoadBtn.Size = UDim2.new(0, 20, 0, 20)
+			LoadBtn.Position = UDim2.new(1, -5, 0.5, 0)
+			LoadBtn.Size = UDim2.new(0, 18, 0, 18)
 			LoadBtn.ZIndex = 104
-			LoadBtn.Image = "rbxassetid://132295854994374"
+			LoadBtn.Image = "rbxassetid://99191463679083"
 			LoadBtn.ImageColor3 = Color3.fromRGB(255, 255, 255)
-			LoadBtn.ImageTransparency = 0.5
+			LoadBtn.ImageTransparency = 0.500
 			
 			Fatality:CreateHover(SaveBtn,function(bool)
 				if bool then
