@@ -291,10 +291,48 @@ Fatality.Flags = {};
 Fatality.ClickSoundId = "rbxassetid://88442833509532";
 Fatality.Colors = {
 	Black = Color3.fromRGB(16, 16, 16),
-	Main = Color3.fromRGB(255, 106, 133)
+	Main = Color3.fromRGB(255, 106, 133),
+	Header = Color3.fromRGB(21, 21, 21),
+	Border = Color3.fromRGB(29, 29, 29),
+	Section = Color3.fromRGB(19, 19, 19),
+	Element = Color3.fromRGB(24, 24, 24)
+};
+Fatality.ColorElements = {
+	Main = {},
+	Black = {},
+	Header = {},
+	Border = {},
+	Section = {},
+	Element = {}
 };
 Fatality.DragBlacklist = {};
 Fatality.Version = '1.6';
+
+function Fatality:RegisterColorElement(colorType, element, property)
+	property = property or "BackgroundColor3"
+	if not self.ColorElements[colorType] then
+		self.ColorElements[colorType] = {}
+	end
+	table.insert(self.ColorElements[colorType], {element = element, property = property})
+end
+
+function Fatality:UpdateColors(colorType, newColor)
+	if not self.ColorElements[colorType] then return end
+	self.Colors[colorType] = newColor
+	for _, data in pairs(self.ColorElements[colorType]) do
+		if data.element and data.element.Parent then
+			if data.property == "ImageColor3" then
+				data.element.ImageColor3 = newColor
+			elseif data.property == "TextColor3" then
+				data.element.TextColor3 = newColor
+			elseif data.property == "Color" then
+				data.element.Color = newColor
+			else
+				data.element.BackgroundColor3 = newColor
+			end
+		end
+	end
+end
 Fatality.Lucide = {
 	["lucide-accessibility"] = "rbxassetid://10709751939",
 	["lucide-activity"] = "rbxassetid://10709752035",
@@ -4437,12 +4475,14 @@ function Fatality.new(Window: Window)
 	FatalFrame.Name = Fatality:RandomString()
 	FatalFrame.Parent = Fatalitywin
 	FatalFrame.AnchorPoint = Vector2.new(0.5, 0)
-	FatalFrame.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+	FatalFrame.BackgroundColor3 = Fatality.Colors.Section
 	FatalFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	FatalFrame.BorderSizePixel = 0
 	FatalFrame.Position = UDim2.new(0.5, 0, 0.2);
 	FatalFrame.Size = Window.Scale;
 	FatalFrame.ClipsDescendants = true
+	
+	Fatality:RegisterColorElement("Section", FatalFrame)
 
 	UICorner.CornerRadius = UDim.new(0, 5)
 	UICorner.Parent = FatalFrame
@@ -4465,17 +4505,21 @@ function Fatality.new(Window: Window)
 	Header.Name = Fatality:RandomString()
 	Header.Parent = FatalFrame
 	Header.Active = true
-	Header.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+	Header.BackgroundColor3 = Fatality.Colors.Header
 	Header.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Header.BorderSizePixel = 0
+	
+	Fatality:RegisterColorElement("Header", Header)
 	Header.Size = UDim2.new(1, 0, 0, 40)
 	Header.ZIndex = 2
 
 	HeaderLine.Name = Fatality:RandomString()
 	HeaderLine.Parent = Header
 	HeaderLine.AnchorPoint = Vector2.new(0, 1)
-	HeaderLine.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+	HeaderLine.BackgroundColor3 = Fatality.Colors.Border
 	HeaderLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	
+	Fatality:RegisterColorElement("Border", HeaderLine)
 	HeaderLine.BorderSizePixel = 0
 	HeaderLine.Position = UDim2.new(0, 0, 1, 0)
 	HeaderLine.Size = UDim2.new(1, 0, 0, 1)
@@ -4627,18 +4671,22 @@ function Fatality.new(Window: Window)
 	Bottom.Parent = FatalFrame
 	Bottom.Active = true
 	Bottom.AnchorPoint = Vector2.new(0, 1)
-	Bottom.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+	Bottom.BackgroundColor3 = Fatality.Colors.Header
 	Bottom.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Bottom.BorderSizePixel = 0
 	Bottom.Position = UDim2.new(0, 0, 1, 0)
 	Bottom.Size = UDim2.new(1, 0, 0, 25)
 	Bottom.ZIndex = 2
+	
+	Fatality:RegisterColorElement("Header", Bottom)
 
 	HeaderLine_2.Name = Fatality:RandomString()
 	HeaderLine_2.Parent = Bottom
-	HeaderLine_2.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+	HeaderLine_2.BackgroundColor3 = Fatality.Colors.Border
 	HeaderLine_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	HeaderLine_2.BorderSizePixel = 0
+	
+	Fatality:RegisterColorElement("Border", HeaderLine_2)
 	HeaderLine_2.Size = UDim2.new(1, 0, 0, 1)
 	HeaderLine_2.ZIndex = 3
 
@@ -5762,24 +5810,30 @@ function Fatality.new(Window: Window)
 
 			Section.Name = Fatality:RandomString()
 			Section.Parent = (string.lower(Config.Position) == 'left' and Left) or (string.lower(Config.Position) == 'center' and Center) or Right;
-			Section.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+			Section.BackgroundColor3 = Fatality.Colors.Section
 			Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Section.BorderSizePixel = 0
 			Section.ClipsDescendants = true
 			Section.Size = UDim2.new(1, 0, 0, 0)
+			
+			Fatality:RegisterColorElement("Section", Section)
 
 			Elements.Name = Fatality:RandomString()
 			Elements.Parent = Section
 			Elements.AnchorPoint = Vector2.new(0.5, 1)
-			Elements.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+			Elements.BackgroundColor3 = Fatality.Colors.Element
 			Elements.BackgroundTransparency = 0
 			Elements.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Elements.BorderSizePixel = 0
 			Elements.Position = UDim2.new(0.5, 0, 1, -1)
 			Elements.Size = UDim2.new(1, -5, 1, -10)
+			
+			Fatality:RegisterColorElement("Element", Elements)
 
-			UIStroke.Color = Color3.fromRGB(29, 29, 29)
+			UIStroke.Color = Fatality.Colors.Border
 			UIStroke.Parent = Elements
+			
+			Fatality:RegisterColorElement("Border", UIStroke, "Color")
 
 			UICorner.CornerRadius = UDim.new(0, 2)
 			UICorner.Parent = Elements
@@ -6008,16 +6062,20 @@ function Fatality.new(Window: Window)
 		SearchFrame.Name = Fatality:RandomString()
 		SearchFrame.Parent = Fatalitywin;
 		SearchFrame.AnchorPoint = Vector2.new(0, 1)
-		SearchFrame.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+		SearchFrame.BackgroundColor3 = Fatality.Colors.Section
 		SearchFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		SearchFrame.BorderSizePixel = 0
 		SearchFrame.Position = UDim2.new(4,0,4,0)
 		SearchFrame.Size = searchScale
 		SearchFrame.ZIndex = 100
 		SearchFrame.ClipsDescendants = true
+		
+		Fatality:RegisterColorElement("Section", SearchFrame)
 
-		UIStroke.Color = Color3.fromRGB(29, 29, 29)
+		UIStroke.Color = Fatality.Colors.Border
 		UIStroke.Parent = SearchFrame
+		
+		Fatality:RegisterColorElement("Border", UIStroke, "Color")
 
 		UICorner.CornerRadius = UDim.new(0, 2)
 		UICorner.Parent = SearchFrame
@@ -6046,13 +6104,17 @@ function Fatality.new(Window: Window)
 		SearchBox.Position = UDim2.new(0.5, 0, 0, 9)
 		SearchBox.Size = UDim2.new(1, -15, 0, 25)
 		SearchBox.ZIndex = 101
+		
+		Fatality:RegisterColorElement("Black", SearchBox)
 
 		UICorner_2.CornerRadius = UDim.new(0, 2)
 		UICorner_2.Parent = SearchBox
 
 		UIStroke_2.Transparency = 0.650
-		UIStroke_2.Color = Color3.fromRGB(29, 29, 29)
+		UIStroke_2.Color = Fatality.Colors.Border
 		UIStroke_2.Parent = SearchBox
+		
+		Fatality:RegisterColorElement("Border", UIStroke_2, "Color")
 
 		TextBox.Parent = SearchBox
 		TextBox.AnchorPoint = Vector2.new(0.5, 0.5)
