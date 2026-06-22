@@ -6454,13 +6454,13 @@ function Fatality.new(Window: Window)
 		Fatality:RegisterColorElement("Border", UIStroke_2, "Color")
 		
 		TextBox.Parent = CreateBox
-		TextBox.AnchorPoint = Vector2.new(0.5, 0.5)
+		TextBox.AnchorPoint = Vector2.new(0, 0.5)
 		TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		TextBox.BackgroundTransparency = 1.000
 		TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TextBox.BorderSizePixel = 0
-		TextBox.Position = UDim2.new(0.5, 0, 0.5, 0)
-		TextBox.Size = UDim2.new(1, -15, 1, -5)
+		TextBox.Position = UDim2.new(0, 10, 0.5, 0)
+		TextBox.Size = UDim2.new(1, -20, 1, -5)
 		TextBox.ZIndex = 102
 		TextBox.ClearTextOnFocus = false
 		TextBox.FontFace = Fatality.FontSemiBold
@@ -6478,7 +6478,7 @@ function Fatality.new(Window: Window)
 		CreateButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		CreateButton.BorderSizePixel = 0
 		CreateButton.Position = UDim2.new(1, -9, 0, 9)
-		CreateButton.Size = UDim2.new(0, 25, 0, 25)
+		CreateButton.Size = UDim2.new(0, 18, 0, 18)
 		CreateButton.ZIndex = 101
 		CreateButton.Image = "rbxassetid://102441183584476"
 		CreateButton.ImageColor3 = Color3.fromRGB(255, 255, 255)
