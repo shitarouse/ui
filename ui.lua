@@ -2485,7 +2485,9 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ValueFrame.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
 		ValueFrame.SizeConstraint = Enum.SizeConstraint.RelativeYY
 		ValueFrame.ZIndex = ZIndex + 2
-		ValueFrame.BackgroundTransparency = 1;
+		ValueFrame.BackgroundTransparency = 1
+
+		Fatality:RegisterColorElement("Black", ValueFrame)
 
 		UICorner.CornerRadius = UDim.new(0, 2)
 		UICorner.Parent = ValueFrame
@@ -2704,6 +2706,8 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ValueFrame.Size = UDim2.new(0, 85, 0.600000024, 0)
 		ValueFrame.ZIndex = ZIndex + 2
 
+		Fatality:RegisterColorElement("Black", ValueFrame)
+
 		UICorner.CornerRadius = UDim.new(0, 2)
 		UICorner.Parent = ValueFrame
 
@@ -2909,7 +2913,9 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		Button.BorderSizePixel = 0
 		Button.Size = UDim2.new(1, -25, 0, 25)
 		Button.ZIndex = ZIndex + 1
-		Fatality:AddDragBlacklist(Button);
+		Fatality:AddDragBlacklist(Button)
+
+		Fatality:RegisterColorElement("Black", Button)
 
 		Button_Name.Name = Fatality:RandomString()
 		Button_Name.Parent = Button
@@ -3100,15 +3106,15 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 			end,
 			Signal = Event.Event:Connect(OpcToggle),
 			SetValue = function(rgb,opc)
-				local IsSame = ValueFrame.BackgroundColor3 == rgb or ValueFrame.BackgroundTransparency == opc;
+				local IsSame = ValueFrame.BackgroundColor3 == rgb and ValueFrame.BackgroundTransparency == opc
 
-				ValueFrame.BackgroundColor3 = rgb; 
-				ValueFrame.BackgroundTransparency = opc;
-				res.set_opc(opc);
+				ValueFrame.BackgroundColor3 = rgb
+				ValueFrame.BackgroundTransparency = opc
+				res.set_opc(opc)
 
 				if not IsSame then
 					task.spawn(Config.Callback,rgb,opc)
-				end;
+				end
 			end,
 			GetValue = function()
 				return {
@@ -3218,6 +3224,8 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ValueFrame.Position = UDim2.new(1, -3, 0.5, 0)
 		ValueFrame.Size = UDim2.new(0, 75, 0.925000012, 0)
 		ValueFrame.ZIndex = ZIndex + 4
+
+		Fatality:RegisterColorElement("Black", ValueFrame)
 
 		UICorner.CornerRadius = UDim.new(0, 2)
 		UICorner.Parent = ValueFrame
@@ -3479,6 +3487,8 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ValueFrame.Position = UDim2.new(1, -3, 0.5, 0)
 		ValueFrame.Size = UDim2.new(0, 75, 0.850000024, 0)
 		ValueFrame.ZIndex = ZIndex + 2
+
+		Fatality:RegisterColorElement("Black", ValueFrame)
 
 		UICorner.CornerRadius = UDim.new(0, 2)
 		UICorner.Parent = ValueFrame
