@@ -4246,8 +4246,9 @@ function Fatality.new(Window: Window)
 		ElementContents = {},
 		MenuSelected = nil,
 		Toggle = true,
-		Signal = Instance.new('BindableEvent');
-	};
+		Signal = Instance.new('BindableEvent'),
+		MenuKeybind = Window.Keybind or "Insert"
+	}
 
 	Fatal.Notifier = Fatality.__NOTIFIER_CACHE or Fatality:CreateNotifier();
 
@@ -4730,11 +4731,11 @@ function Fatality.new(Window: Window)
 
 	UserInputService.InputBegan:Connect(function(input,istyping)
 		if not istyping then
-			if input.KeyCode == Window.Keybind or input.KeyCode.Name == Window.Keybind then
-				Fatal.Toggle = not Fatal.Toggle;
+			if input.KeyCode == Fatal.MenuKeybind or input.KeyCode.Name == Fatal.MenuKeybind then
+				Fatal.Toggle = not Fatal.Toggle
 
-				ToggleUI(Fatal.Toggle);
-			end;
+				ToggleUI(Fatal.Toggle)
+			end
 		end
 	end)
 
