@@ -4894,12 +4894,14 @@ function Fatality.new(Window: Window)
 		local menu_name = Instance.new("TextLabel")
 
 		MenuButton.Name = Fatality:RandomString()
-		MenuButton.Parent = tbc;
-		MenuButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+		MenuButton.Parent = tbc
+		MenuButton.BackgroundColor3 = Fatality.Colors.Black
 		MenuButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		MenuButton.BorderSizePixel = 0
 		MenuButton.Size = UDim2.new(0, 90, 0.85, 0)
 		MenuButton.ZIndex = 5
+
+		Fatality:RegisterColorElement("Black", MenuButton)
 
 		UICorner.CornerRadius = UDim.new(0, 3)
 		UICorner.Parent = MenuButton
@@ -6720,6 +6722,36 @@ function Fatality.new(Window: Window)
 				end
 			end
 		end
+
+		local SearchDelay = tick()
+
+		TextBox:GetPropertyChangedSignal('Text'):Connect(function()
+			SearchDelay = tick()
+
+			if not TextBox.Text:byte() then
+				for _, child in pairs(ScrollingFrame:GetChildren()) do
+					if child:IsA('Frame') and child:FindFirstChildOfClass('TextLabel') then
+						child.Visible = true
+					end
+				end
+				return
+			end
+
+			task.delay(0.3,function()
+				if (tick() - SearchDelay) > 0.3 then
+					for _, child in pairs(ScrollingFrame:GetChildren()) do
+						if child:IsA('Frame') and child:FindFirstChildOfClass('TextLabel') then
+							local configLabel = child:FindFirstChildOfClass('TextLabel')
+							if string.find(string.lower(configLabel.Text), string.lower(TextBox.Text), 1, true) then
+								child.Visible = true
+							else
+								child.Visible = false
+							end
+						end
+					end
+				end
+			end)
+		end)
 		
 		CreateButton.MouseButton1Click:Connect(function()
 			Fatality:PlayClickSound()
