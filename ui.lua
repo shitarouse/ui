@@ -6336,17 +6336,61 @@ function Fatality.new(Window: Window)
 		
 		local ConfigToggle = function(value)
 			if value then
+				ConfigFrame.Position = UDim2.fromOffset(SaveButton.AbsolutePosition.X - 5,SaveButton.AbsolutePosition.Y + (SaveButton.AbsoluteSize.Y * 3))
+
 				Fatality:CreateAnimation(ConfigFrame,0.35,{
-					Position = UDim2.new(0.5,0,0.5,0)
+					Size = configScale
 				})
+
 				Fatality:CreateAnimation(DropShadow,0.35,{
+					ImageTransparency = 0.750
+				})
+
+				Fatality:CreateAnimation(CreateBox,0.35,{
+					BackgroundTransparency = 0
+				})
+
+				Fatality:CreateAnimation(UIStroke_2,0.5,{
+					Transparency = 0.650
+				})
+
+				Fatality:CreateAnimation(UIStroke,0.5,{
+					Transparency = 0
+				})
+
+				Fatality:CreateAnimation(TextBox,0.5,{
+					TextTransparency = 0
+				})
+
+				Fatality:CreateAnimation(CreateButton,0.5,{
 					ImageTransparency = 0.5
 				})
 			else
-				Fatality:CreateAnimation(ConfigFrame,0.35,{
-					Position = UDim2.new(4,0,4,0)
+				Fatality:CreateAnimation(UIStroke,0.5,{
+					Transparency = 1
 				})
+
+				Fatality:CreateAnimation(ConfigFrame,0.35,{
+					Size = UDim2.new(configScale.X.Scale, configScale.X.Offset, 0, 0)
+				})
+
 				Fatality:CreateAnimation(DropShadow,0.35,{
+					ImageTransparency = 1
+				})
+
+				Fatality:CreateAnimation(CreateBox,0.5,{
+					BackgroundTransparency = 1
+				})
+
+				Fatality:CreateAnimation(UIStroke_2,0.5,{
+					Transparency = 1
+				})
+
+				Fatality:CreateAnimation(TextBox,0.5,{
+					TextTransparency = 1
+				})
+
+				Fatality:CreateAnimation(CreateButton,0.5,{
 					ImageTransparency = 1
 				})
 			end
@@ -6354,7 +6398,7 @@ function Fatality.new(Window: Window)
 		
 		ConfigFrame.Name = Fatality:RandomString()
 		ConfigFrame.Parent = Fatalitywin
-		ConfigFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+		ConfigFrame.AnchorPoint = Vector2.new(0, 1)
 		ConfigFrame.BackgroundColor3 = Fatality.Colors.Section
 		ConfigFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		ConfigFrame.BorderSizePixel = 0
@@ -6370,7 +6414,7 @@ function Fatality.new(Window: Window)
 		
 		Fatality:RegisterColorElement("Border", UIStroke, "Color")
 		
-		UICorner.CornerRadius = UDim.new(0, 3)
+		UICorner.CornerRadius = UDim.new(0, 2)
 		UICorner.Parent = ConfigFrame
 		
 		DropShadow.Name = Fatality:RandomString()
@@ -6384,7 +6428,7 @@ function Fatality.new(Window: Window)
 		DropShadow.ZIndex = 99
 		DropShadow.Image = "rbxassetid://6014261993"
 		DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-		DropShadow.ImageTransparency = 1
+		DropShadow.ImageTransparency = 0.750
 		DropShadow.ScaleType = Enum.ScaleType.Slice
 		DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
 		
@@ -6400,7 +6444,7 @@ function Fatality.new(Window: Window)
 		
 		Fatality:RegisterColorElement("Black", CreateBox)
 		
-		UICorner_2.CornerRadius = UDim.new(0, 3)
+		UICorner_2.CornerRadius = UDim.new(0, 2)
 		UICorner_2.Parent = CreateBox
 		
 		UIStroke_2.Transparency = 0.650
@@ -6410,20 +6454,20 @@ function Fatality.new(Window: Window)
 		Fatality:RegisterColorElement("Border", UIStroke_2, "Color")
 		
 		TextBox.Parent = CreateBox
-		TextBox.AnchorPoint = Vector2.new(0, 0.5)
+		TextBox.AnchorPoint = Vector2.new(0.5, 0.5)
 		TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		TextBox.BackgroundTransparency = 1.000
 		TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TextBox.BorderSizePixel = 0
-		TextBox.Position = UDim2.new(0, 10, 0.5, 0)
-		TextBox.Size = UDim2.new(1, -20, 1, -5)
+		TextBox.Position = UDim2.new(0.5, 0, 0.5, 0)
+		TextBox.Size = UDim2.new(1, -15, 1, -5)
 		TextBox.ZIndex = 102
 		TextBox.ClearTextOnFocus = false
 		TextBox.FontFace = Fatality.FontSemiBold
 		TextBox.PlaceholderText = "Config name"
 		TextBox.Text = ""
 		TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-		TextBox.TextSize = 13.000
+		TextBox.TextSize = 12.000
 		TextBox.TextXAlignment = Enum.TextXAlignment.Left
 		
 		CreateButton.Name = Fatality:RandomString()
@@ -6471,6 +6515,20 @@ function Fatality.new(Window: Window)
 		
 		UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
 			ScrollingFrame.CanvasSize = UDim2.fromOffset(0,UIListLayout.AbsoluteContentSize.Y)
+		end)
+
+		ConfigToggle(false)
+
+		Fatality:CreateHover(SaveButton,function(bool)
+			if bool then
+				Fatality:CreateAnimation(SaveButton,0.5,{
+					ImageTransparency = 0.1
+				})
+			else
+				Fatality:CreateAnimation(SaveButton,0.5,{
+					ImageTransparency = 0.5
+				})
+			end	
 		end)
 		
 		local function createConfigCard(configName)
