@@ -5968,32 +5968,32 @@ function Fatality.new(Window: Window)
 			end	
 		end);
 
-		Fatality:CreateHover(InfoButton,function(bool)
+		Fatality:CreateHover(SaveButton,function(bool)
 			if bool then
-				Fatality:CreateAnimation(InfoButton,0.5,{
+				Fatality:CreateAnimation(SaveButton,0.5,{
 					ImageTransparency = 0.1
 				})
 			else
-				Fatality:CreateAnimation(InfoButton,0.5,{
+				Fatality:CreateAnimation(SaveButton,0.5,{
 					ImageTransparency = 0.5
 				})
 			end	
-		end);
+		end)
 
 		function Fatal:AddSave(callback)
 			SaveButton.MouseButton1Click:Connect(function(...)
-				Fatality:PlayClickSound();
-				callback(...);
-			end);
-		end;
+				Fatality:PlayClickSound()
+				callback(...)
+			end)
+		end
 
 		function Fatal:AddInfo(callback)
 			InfoButton.MouseButton1Click:Connect(function(...)
-				Fatality:PlayClickSound();
-				callback(...);
-			end);
-		end;
-	end;
+				Fatality:PlayClickSound()
+				callback(...)
+			end)
+		end
+	end
 
 	do
 		local SearchFrame = Instance.new("Frame")
@@ -6820,6 +6820,136 @@ function Fatality.new(Window: Window)
 		end)
 		
 		ConfigToggle(false)
+	end
+
+	do
+		local InfoFrame = Instance.new("Frame")
+		local UIStroke = Instance.new("UIStroke")
+		local UICorner = Instance.new("UICorner")
+		local DropShadow = Instance.new("ImageLabel")
+		local InfoText = Instance.new("TextLabel")
+		local infoScale = UDim2.new(0, 295, 0, 150)
+
+		Fatality:AddDragBlacklist(InfoFrame)
+
+		local InfoToggle = function(value)
+			if value then
+				InfoFrame.Position = UDim2.fromOffset(InfoButton.AbsolutePosition.X - 295 + 21, InfoButton.AbsolutePosition.Y + (InfoButton.AbsoluteSize.Y * 3))
+
+				Fatality:CreateAnimation(InfoFrame,0.35,{
+					Size = infoScale
+				})
+
+				Fatality:CreateAnimation(DropShadow,0.35,{
+					ImageTransparency = 0.750
+				})
+
+				Fatality:CreateAnimation(UIStroke,0.5,{
+					Transparency = 0
+				})
+
+				Fatality:CreateAnimation(InfoText,0.5,{
+					TextTransparency = 0
+				})
+			else
+				Fatality:CreateAnimation(UIStroke,0.5,{
+					Transparency = 1
+				})
+
+				Fatality:CreateAnimation(InfoFrame,0.35,{
+					Size = UDim2.new(infoScale.X.Scale, infoScale.X.Offset, 0, 0)
+				})
+
+				Fatality:CreateAnimation(DropShadow,0.35,{
+					ImageTransparency = 1
+				})
+
+				Fatality:CreateAnimation(InfoText,0.5,{
+					TextTransparency = 1
+				})
+			end
+		end
+
+		InfoFrame.Name = Fatality:RandomString()
+		InfoFrame.Parent = Fatalitywin
+		InfoFrame.AnchorPoint = Vector2.new(0, 1)
+		InfoFrame.BackgroundColor3 = Fatality.Colors.Section
+		InfoFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		InfoFrame.BorderSizePixel = 0
+		InfoFrame.Position = UDim2.new(4,0,4,0)
+		InfoFrame.Size = infoScale
+		InfoFrame.ZIndex = 100
+		InfoFrame.ClipsDescendants = true
+
+		Fatality:RegisterColorElement("Section", InfoFrame)
+
+		UIStroke.Color = Fatality.Colors.Border
+		UIStroke.Parent = InfoFrame
+
+		Fatality:RegisterColorElement("Border", UIStroke, "Color")
+
+		UICorner.CornerRadius = UDim.new(0, 2)
+		UICorner.Parent = InfoFrame
+
+		DropShadow.Name = Fatality:RandomString()
+		DropShadow.Parent = InfoFrame
+		DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+		DropShadow.BackgroundTransparency = 1.000
+		DropShadow.BorderSizePixel = 0
+		DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+		DropShadow.Rotation = 0.010
+		DropShadow.Size = UDim2.new(1, 47, 1, 47)
+		DropShadow.ZIndex = 99
+		DropShadow.Image = "rbxassetid://6014261993"
+		DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+		DropShadow.ImageTransparency = 0.750
+		DropShadow.ScaleType = Enum.ScaleType.Slice
+		DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+
+		InfoText.Name = Fatality:RandomString()
+		InfoText.Parent = InfoFrame
+		InfoText.AnchorPoint = Vector2.new(0.5, 0.5)
+		InfoText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		InfoText.BackgroundTransparency = 1.000
+		InfoText.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		InfoText.BorderSizePixel = 0
+		InfoText.Position = UDim2.new(0.5, 0, 0.5, 0)
+		InfoText.Size = UDim2.new(1, -20, 1, -20)
+		InfoText.ZIndex = 102
+		InfoText.FontFace = Fatality.FontSemiBold
+		InfoText.Text = "This script created by @shitarouse \\ @entiizk .\n\nNote -  im russian boy and love femboys :)"
+		InfoText.TextColor3 = Color3.fromRGB(255, 255, 255)
+		InfoText.TextSize = 13.000
+		InfoText.TextTransparency = 0
+		InfoText.TextWrapped = true
+		InfoText.TextYAlignment = Enum.TextYAlignment.Top
+
+		InfoToggle(false)
+
+		Fatality:CreateHover(InfoButton,function(bool)
+			if bool then
+				Fatality:CreateAnimation(InfoButton,0.5,{
+					ImageTransparency = 0.1
+				})
+			else
+				Fatality:CreateAnimation(InfoButton,0.5,{
+					ImageTransparency = 0.5
+				})
+			end	
+		end)
+
+		InfoButton.MouseButton1Click:Connect(function()
+			Fatality:PlayClickSound()
+			InfoToggle(true)
+		end)
+
+		UserInputService.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				if not Fatality:IsMouseOverFrame(InfoFrame) then
+					InfoToggle(false)
+				end
+			end
+		end)
 	end
 
 	function Fatal:GetButton()
