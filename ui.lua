@@ -6439,7 +6439,7 @@ function Fatality.new(Window: Window)
 		CreateBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		CreateBox.BorderSizePixel = 0
 		CreateBox.Position = UDim2.new(0, 7, 0, 9)
-		CreateBox.Size = UDim2.new(1, -40, 0, 25)
+		CreateBox.Size = UDim2.new(1, -50, 0, 25)
 		CreateBox.ZIndex = 101
 		
 		Fatality:RegisterColorElement("Black", CreateBox)
@@ -6478,7 +6478,7 @@ function Fatality.new(Window: Window)
 		CreateButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		CreateButton.BorderSizePixel = 0
 		CreateButton.Position = UDim2.new(1, -8, 0, 9)
-		CreateButton.Size = UDim2.new(0, 25, 0, 25)
+		CreateButton.Size = UDim2.new(0, 30, 0, 30)
 		CreateButton.ZIndex = 101
 		CreateButton.Image = "rbxassetid://102441183584476"
 		CreateButton.ImageColor3 = Color3.fromRGB(255, 255, 255)
