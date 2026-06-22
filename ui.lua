@@ -6438,7 +6438,7 @@ function Fatality.new(Window: Window)
 		CreateBox.BackgroundColor3 = Fatality.Colors.Black
 		CreateBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		CreateBox.BorderSizePixel = 0
-		CreateBox.Position = UDim2.new(0.5, 0, 0, 9)
+		CreateBox.Position = UDim2.new(0.5, -10, 0, 9)
 		CreateBox.Size = UDim2.new(1, -50, 0, 25)
 		CreateBox.ZIndex = 101
 		
@@ -6477,7 +6477,7 @@ function Fatality.new(Window: Window)
 		CreateButton.BackgroundTransparency = 1.000
 		CreateButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		CreateButton.BorderSizePixel = 0
-		CreateButton.Position = UDim2.new(1, -7, 0, 7)
+		CreateButton.Position = UDim2.new(1, -7, 0, 12)
 		CreateButton.Size = UDim2.new(0, 18, 0, 18)
 		CreateButton.ZIndex = 101
 		CreateButton.Image = "rbxassetid://102441183584476"
