@@ -6478,7 +6478,7 @@ function Fatality.new(Window: Window)
 		CreateButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		CreateButton.BorderSizePixel = 0
 		CreateButton.Position = UDim2.new(1, -7, 0, 7)
-		CreateButton.Size = UDim2.new(0, 30, 0, 30)
+		CreateButton.Size = UDim2.new(0, 18, 0, 18)
 		CreateButton.ZIndex = 101
 		CreateButton.Image = "rbxassetid://102441183584476"
 		CreateButton.ImageColor3 = Color3.fromRGB(255, 255, 255)
