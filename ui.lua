@@ -6834,7 +6834,7 @@ function Fatality.new(Window: Window)
 
 		local InfoToggle = function(value)
 			if value then
-				InfoFrame.Position = UDim2.fromOffset(InfoButton.AbsolutePosition.X - 270 + 16, InfoButton.AbsolutePosition.Y + (InfoButton.AbsoluteSize.Y * 3))
+				InfoFrame.Position = UDim2.fromOffset(InfoButton.AbsolutePosition.X - 270 + 5, InfoButton.AbsolutePosition.Y + (InfoButton.AbsoluteSize.Y * 3))
 
 				Fatality:CreateAnimation(InfoFrame,0.35,{
 					Size = infoScale
@@ -6917,7 +6917,7 @@ function Fatality.new(Window: Window)
 		InfoText.Size = UDim2.new(1, -20, 1, -20)
 		InfoText.ZIndex = 102
 		InfoText.FontFace = Fatality.FontSemiBold
-		InfoText.Text = "This script created by @shitarouse \\ @entiizk (its my telegram), my dc - pastinguser.\n\nNote -  im russian boy and i love femboys :)"
+		InfoText.Text = "This script created by @shitarouse / @entiizk (its my telegram), my dc - pastinguser.\n\nNote -  im russian boy and i love femboys :)"
 		InfoText.TextColor3 = Color3.fromRGB(255, 255, 255)
 		InfoText.TextSize = 13.000
 		InfoText.TextTransparency = 0
