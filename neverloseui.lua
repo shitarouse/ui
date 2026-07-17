@@ -3,7 +3,8 @@
     Author: 4lpaca
 	License: MIT
     Discord: https://arceney.win/discord
-    Other-Projects: https://4lpaca.win
+    Other-Projects: https://4lpaca.win	
+	reworked by shitarouse dc pastinguser
 ]]
 
 do
